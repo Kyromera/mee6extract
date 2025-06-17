@@ -96,7 +96,7 @@ The library provides the following data models:
 - `UserXp`: Contains processed user data with:
   - `id`: Discord user ID
   - `username`: Discord username
-  - `discriminator`: Discord discriminator
+  - `discriminator`: Discord discriminator (should be 0 for users, and bots cant level, but retain it for compatibility with the api)
   - `level`: MEE6 level
   - `totalXp`: Total XP accumulated
   - `rank`: User's rank in the guild
