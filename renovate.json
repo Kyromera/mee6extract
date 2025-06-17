@@ -1,0 +1,82 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:recommended"],
+  "dependencyDashboard": true,
+  "labels": ["dependencies"],
+  "timezone": "Europe/Berlin",
+  "prCreation": "immediate",
+  "automerge": true,
+  "automergeType": "pr",
+  "ignoreTests": true,
+  "gradle": {
+    "enabled": true
+  },
+  "packageRules": [
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "pr"
+    },
+    {
+      "matchUpdateTypes": ["major"],
+      "groupName": "major updates"
+    },
+    {
+      "groupName": "Kotlin core",
+      "matchPackageNames": [
+        "org.jetbrains.kotlin:kotlin-jvm",
+        "org.jetbrains.kotlin:kotlin-stdlib",
+        "org.jetbrains.kotlin:kotlin-stdlib-jdk8",
+        "org.jetbrains.kotlin:kotlin-plugin-serialization"
+      ],
+      "automerge": true
+    },
+    {
+      "groupName": "Ktor",
+      "matchPackageNames": [
+        "io.ktor:ktor-client-core",
+        "io.ktor:ktor-client-cio",
+        "io.ktor:ktor-client-content-negotiation",
+        "io.ktor:ktor-client-mock"
+      ]
+    },
+    {
+      "groupName": "Kotlinx Serialization",
+      "matchPackageNames": [
+        "org.jetbrains.kotlinx:kotlinx-serialization-json"
+      ],
+      "automerge": true
+    },
+    {
+      "groupName": "Kotlinx Coroutines",
+      "matchPackageNames": [
+        "org.jetbrains.kotlinx:kotlinx-coroutines-test"
+      ],
+      "automerge": true
+    },
+    {
+      "groupName": "JUnit",
+      "matchPackageNames": [
+        "org.junit.jupiter:junit-jupiter"
+      ],
+      "automerge": true
+    },
+    {
+      "groupName": "Mockk",
+      "matchPackageNames": [
+        "io.mockk:mockk"
+      ],
+      "automerge": true
+    },
+    {
+      "groupName": "test dependencies",
+      "matchDepTypes": ["testImplementation"],
+      "automerge": true
+    },
+    {
+      "groupName": "code generation tools",
+      "matchDepTypes": ["kapt", "annotationProcessor"]
+    }
+  ],
+  "commitMessagePrefix": "chore(deps):"
+}
