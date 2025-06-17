@@ -25,3 +25,14 @@ data class UserXp(
     val totalXp: Long,
     val rank: Int,
 )
+
+@Serializable
+data class Mee6ErrorResponse(
+    @SerialName("status_code") val statusCode: Int? = null,
+    val error: Mee6Error? = null,
+)
+
+@Serializable
+data class Mee6Error(
+    val message: String? = null,
+)

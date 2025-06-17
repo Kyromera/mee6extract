@@ -10,7 +10,7 @@ object Mee6XpExample {
             val client = Mee6XpClient()
 
             try {
-                val guildId = 777944254500306954
+                val guildId = 123456789123456789
 
                 println("Example 1: Get a single user's XP data")
                 println("--------------------------------------")

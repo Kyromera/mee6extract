@@ -7,10 +7,15 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
+import me.diamondforge.mee6.exceptions.GuildNotFoundException
+import me.diamondforge.mee6.exceptions.LeaderboardNotPublicException
+import me.diamondforge.mee6.models.Mee6Error
+import me.diamondforge.mee6.models.Mee6ErrorResponse
 import me.diamondforge.mee6.models.Mee6Response
 import me.diamondforge.mee6.models.Mee6User
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class Mee6XpClientTest {
     private val mockEngine =
@@ -155,7 +160,7 @@ class Mee6XpClientTest {
                             discriminator = "0000",
                             level = 1,
                             detailedXp = listOf(10L, 20L, 100L),
-                        )
+                        ),
                     )
                 }
 
@@ -192,6 +197,33 @@ class Mee6XpClientTest {
                     content = "Error",
                     status = HttpStatusCode.NotFound,
                     headers = headersOf(HttpHeaders.ContentType, "text/plain"),
+                )
+            } else if (url.contains("leaderboard/404")) {
+                val errorResponse =
+                    Mee6ErrorResponse(
+                        statusCode = 404,
+                        error = Mee6Error(message = "Guild not found"),
+                    )
+                val jsonContent = Json.encodeToString(Mee6ErrorResponse.serializer(), errorResponse)
+                respond(
+                    content = jsonContent,
+                    status = HttpStatusCode.NotFound,
+                    headers = headersOf(HttpHeaders.ContentType, "application/json"),
+                )
+            } else if (url.contains("leaderboard/401")) {
+                val errorResponse =
+                    Mee6ErrorResponse(
+                        statusCode = 401,
+                        error =
+                            Mee6Error(
+                                message = "The server could not verify that you are authorized to access the URL requested. You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.",
+                            ),
+                    )
+                val jsonContent = Json.encodeToString(Mee6ErrorResponse.serializer(), errorResponse)
+                respond(
+                    content = jsonContent,
+                    status = HttpStatusCode.Unauthorized,
+                    headers = headersOf(HttpHeaders.ContentType, "application/json"),
                 )
             } else {
                 respond(
@@ -408,5 +440,53 @@ class Mee6XpClientTest {
     fun `close method can be called without exceptions`() {
         val testClient = Mee6XpClient()
         testClient.close()
+    }
+
+    @Test
+    fun `getUserXp throws GuildNotFoundException when guild does not exist`() {
+        assertThrows<GuildNotFoundException> {
+            runBlocking {
+                client.getUserXp(404L, 123L)
+            }
+        }.also { exception ->
+            assertTrue(exception.message?.contains("Guild not found") ?: false)
+            assertTrue(exception.message?.contains("404") ?: false)
+        }
+    }
+
+    @Test
+    fun `getAllUsers throws GuildNotFoundException when guild does not exist`() {
+        assertThrows<GuildNotFoundException> {
+            runBlocking {
+                client.getAllUsers(404L)
+            }
+        }.also { exception ->
+            assertTrue(exception.message?.contains("Guild not found") ?: false)
+            assertTrue(exception.message?.contains("404") ?: false)
+        }
+    }
+
+    @Test
+    fun `getUserXp throws LeaderboardNotPublicException when leaderboard is not public`() {
+        assertThrows<LeaderboardNotPublicException> {
+            runBlocking {
+                client.getUserXp(401L, 123L)
+            }
+        }.also { exception ->
+            assertTrue(exception.message?.contains("not public") ?: false)
+            assertTrue(exception.message?.contains("401") ?: false)
+        }
+    }
+
+    @Test
+    fun `getAllUsers throws LeaderboardNotPublicException when leaderboard is not public`() {
+        assertThrows<LeaderboardNotPublicException> {
+            runBlocking {
+                client.getAllUsers(401L)
+            }
+        }.also { exception ->
+            assertTrue(exception.message?.contains("not public") ?: false)
+            assertTrue(exception.message?.contains("401") ?: false)
+        }
     }
 }
