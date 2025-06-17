@@ -1,4 +1,4 @@
-package me.diamondforge.mee6.exceptions
+package me.diamondforge.mee6extract.exceptions
 
 
 sealed class Mee6Exception(

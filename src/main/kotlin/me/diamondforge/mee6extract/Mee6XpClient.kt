@@ -1,4 +1,4 @@
-package me.diamondforge.mee6
+package me.diamondforge.mee6extract
 
 import io.ktor.client.*
 import io.ktor.client.call.*
@@ -9,12 +9,12 @@ import io.ktor.client.statement.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.json.Json
-import me.diamondforge.mee6.exceptions.GuildNotFoundException
-import me.diamondforge.mee6.exceptions.LeaderboardNotPublicException
-import me.diamondforge.mee6.exceptions.Mee6ApiException
-import me.diamondforge.mee6.models.Mee6ErrorResponse
-import me.diamondforge.mee6.models.Mee6Response
-import me.diamondforge.mee6.models.UserXp
+import me.diamondforge.mee6extract.exceptions.GuildNotFoundException
+import me.diamondforge.mee6extract.exceptions.LeaderboardNotPublicException
+import me.diamondforge.mee6extract.exceptions.Mee6ApiException
+import me.diamondforge.mee6extract.models.Mee6ErrorResponse
+import me.diamondforge.mee6extract.models.Mee6Response
+import me.diamondforge.mee6extract.models.UserXp
 
 class Mee6XpClient(
     private val client: HttpClient = defaultHttpClient(),

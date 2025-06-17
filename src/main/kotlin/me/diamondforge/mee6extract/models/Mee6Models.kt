@@ -1,4 +1,4 @@
-package me.diamondforge.mee6.models
+package me.diamondforge.mee6extract.models
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

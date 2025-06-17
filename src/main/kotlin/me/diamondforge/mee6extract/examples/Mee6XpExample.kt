@@ -1,7 +1,7 @@
-package me.diamondforge.mee6.examples
+package me.diamondforge.mee6extract.examples
 
 import kotlinx.coroutines.runBlocking
-import me.diamondforge.mee6.Mee6XpClient
+import me.diamondforge.mee6extract.Mee6XpClient
 
 object Mee6XpExample {
     @JvmStatic

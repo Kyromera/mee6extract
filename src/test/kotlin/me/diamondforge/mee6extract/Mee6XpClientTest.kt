@@ -1,4 +1,4 @@
-package me.diamondforge.mee6
+package me.diamondforge.mee6extract
 
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
@@ -7,12 +7,12 @@ import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.json.Json
-import me.diamondforge.mee6.exceptions.GuildNotFoundException
-import me.diamondforge.mee6.exceptions.LeaderboardNotPublicException
-import me.diamondforge.mee6.models.Mee6Error
-import me.diamondforge.mee6.models.Mee6ErrorResponse
-import me.diamondforge.mee6.models.Mee6Response
-import me.diamondforge.mee6.models.Mee6User
+import me.diamondforge.mee6extract.exceptions.GuildNotFoundException
+import me.diamondforge.mee6extract.exceptions.LeaderboardNotPublicException
+import me.diamondforge.mee6extract.models.Mee6Error
+import me.diamondforge.mee6extract.models.Mee6ErrorResponse
+import me.diamondforge.mee6extract.models.Mee6Response
+import me.diamondforge.mee6extract.models.Mee6User
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
