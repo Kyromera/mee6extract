@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.kyromera:mee6extract:1.0")
+    implementation("com.github.kyromera:mee6extract:1.0.0")
 }
 ```
 
@@ -29,7 +29,7 @@ dependencies {
 <dependency>
     <groupId>com.github.kyromera</groupId>
     <artifactId>mee6extract</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
