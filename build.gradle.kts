@@ -22,7 +22,7 @@ dependencies {
     implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.8.1")
 
-    testImplementation("org.junit.jupiter:junit-jupiter:5.13.1")
+    testImplementation("org.junit.jupiter:junit-jupiter:5.13.2")
     testImplementation("io.mockk:mockk:1.14.4")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
     testImplementation("io.ktor:ktor-client-mock:$ktorVersion")
