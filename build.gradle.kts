@@ -14,7 +14,7 @@ repositories {
 repositories {
     mavenCentral()
 }
-val ktorVersion = "3.3.0"
+val ktorVersion = "3.3.1"
 dependencies {
     api("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
