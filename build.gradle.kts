@@ -24,7 +24,7 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter:6.0.3")
     testImplementation("io.mockk:mockk:1.14.9")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.10.2")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0")
     testImplementation("io.ktor:ktor-client-mock:$ktorVersion")
 }
 
